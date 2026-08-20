@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services · Penelope Tyawa</title>
+  <meta name="description" content="Explore the services offered by Penelope Tyawa – workshops, coaching, assessments, individual & couple therapy." />
+
+  <!-- Tailwind CSS (for header and layout) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Bootstrap 5 (for carousel, accordion) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            'theme': {
+              orange: '#ff9966',      /* original accent */
+              danger: '#dc3545',      /* original red */
+              dark: '#232323',        /* original footer */
+              light: '#f8f5f2',
+              gold: '#f0e5d8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fcfaf8;
+      color: #231e1f;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-body { font-family: 'Open Sans', sans-serif; }
+    .text-theme-orange { color: #ff9966; }
+    .bg-theme-orange { background-color: #ff9966; }
+    .border-theme-orange { border-color: #ff9966; }
+    .text-theme-danger { color: #dc3545; }
+    .bg-theme-danger { background-color: #dc3545; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff9966 0%, #ff7a4a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #ff9966; border-radius: 4px; }
+
+    /* ===== HEADER GLASS ===== */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link-new {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link-new:hover {
+      color: #ff9966;
+      background-color: #fff3ed;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 60;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fff3ed;
+      color: #ff9966;
+    }
+    .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+    .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
+
+    .btn-primary-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #ff9966, #ff7a4a);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(255, 153, 102, 0.3);
+    }
+    .btn-primary-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 153, 102, 0.4);
+      color: white;
+    }
+
+    .btn-danger-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: #dc3545;
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25);
+    }
+    .btn-danger-red:hover {
+      background: #b02a37;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.35);
+      color: white;
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu-panel {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 60;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .mobile-menu-panel.open { transform: translateX(0); }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #231e1f;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(255, 153, 102, 0.06);
+      color: #ff9966;
+      padding-left: 1.2rem;
+    }
+
+    /* ===== TIMELINE / SERVICES ===== */
+    .service-timeline {
+      padding: 40px 0 20px;
+      background: #ffffff;
+    }
+    .service-timeline .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .service-timeline .timeline-item:last-child {
+      border-bottom: none;
+    }
+    .service-timeline .timeline-item.reverse {
+      direction: rtl;
+    }
+    .service-timeline .timeline-item.reverse > * {
+      direction: ltr;
+    }
+    .service-timeline .timeline-image img {
+      border-radius: 20px;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.08);
+      object-fit: cover;
+      width: 100%;
+    }
+    .service-timeline .timeline-text h4 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-timeline .timeline-text p {
+      font-size: 1.05rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.8;
+    }
+    .service-timeline .timeline-text strong {
+      color: #231e1f;
+    }
+
+    /* ===== GALLERY / MY WORK ===== */
+    .gallery-section {
+      padding: 40px 0 60px;
+      background: #f8f5f2;
+    }
+    .gallery-section .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px -6px rgba(0,0,0,0.06);
+      background: white;
+      transition: 0.3s;
+    }
+    .gallery-section .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px -10px rgba(0,0,0,0.1);
+    }
+    .gallery-section .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .gallery-section .gallery-item .gallery-body {
+      padding: 1rem 1.2rem 1.4rem;
+      text-align: center;
+    }
+    .gallery-section .gallery-item .gallery-body h6 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ===== ACCORDION (Pure CSS smooth expand/collapse) ===== */
+    .accordion-custom {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .accordion-item-custom {
+      background: #f8f5f2;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .accordion-item-custom:hover {
+      border-color: #ff9966;
+    }
+    .accordion-item-custom.active {
+      border-color: #ff9966;
+      box-shadow: 0 4px 16px rgba(255, 153, 102, 0.12);
+    }
+
+    .accordion-header-custom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 16px 24px;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: background 0.2s ease;
+    }
+    .accordion-header-custom:hover {
+      background: rgba(255, 153, 102, 0.06);
+    }
+    .accordion-header-custom .title {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .accordion-header-custom .icon {
+      color: #ff9966;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .accordion-item-custom.active .accordion-header-custom .icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body-custom {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+      padding: 0 24px;
+    }
+    .accordion-item-custom.active .accordion-body-custom {
+      max-height: 400px; /* enough for content */
+      padding: 0 24px 20px 24px;
+    }
+    .accordion-body-custom p {
+      font-size: 0.98rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ===== PRICING / FEATURES ===== */
+    .pricing-section {
+      padding: 40px 0 60px;
+      background: #f8f5f2;
+    }
+    .pricing-section .pricing-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px -6px rgba(0,0,0,0.06);
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .pricing-section .pricing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -10px rgba(0,0,0,0.1);
+    }
+    .pricing-section .pricing-card .pricing-img {
+      width: 120px;
+      flex-shrink: 0;
+    }
+    .pricing-section .pricing-card .pricing-img img {
+      border-radius: 14px;
+      object-fit: cover;
+      width: 100%;
+      height: 120px;
+    }
+    .pricing-section .pricing-card .pricing-info {
+      flex: 1;
+    }
+    .pricing-section .pricing-card .pricing-info h6 {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .pricing-section .pricing-card .pricing-info p {
+      font-size: 0.95rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      margin-bottom: 0.2rem;
+    }
+    .pricing-section .pricing-card .pricing-action {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .pricing-section .pricing-card .pricing-action .price {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #231e1f;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-custom {
+      background: #232323;
+      color: #d6d0c8;
+      padding: 3rem 0 1.2rem;
+    }
+    .footer-custom a { color: #d6d0c8; transition: 0.2s; }
+    .footer-custom a:hover { color: #ff9966; }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: 0.2s;
+      color: #d6d0c8;
+    }
+    .social-icon:hover {
+      background: #ff9966;
+      color: #232323;
+      transform: scale(1.05);
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    #whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #25d366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: 0.25s;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    #whatsapp-float i { font-size: 32px; color: white; }
+    #whatsapp-float:hover { transform: scale(1.08); }
+    @keyframes floatBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body { padding-top: 64px; }
+      .service-timeline .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 0;
+      }
+      .service-timeline .timeline-item.reverse {
+        direction: ltr;
+      }
+      .pricing-section .pricing-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .pricing-section .pricing-card .pricing-img {
+        width: 100%;
+        max-width: 200px;
+      }
+      .pricing-section .pricing-card .pricing-action {
+        text-align: center;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up.delay-1 { animation-delay: 0.1s; }
+    .fade-up.delay-2 { animation-delay: 0.2s; }
+    .fade-up.delay-3 { animation-delay: 0.3s; }
+    .fade-up.delay-4 { animation-delay: 0.4s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER (glass) ===== -->
+  <header class="header-glass" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex justify-between items-center h-20">
+
+        <!-- Logo -->
+        <a href="Home.html" class="flex items-center gap-3 group">
+          <img src="assets/images/pnt-logo-343x183.png" alt="Penelope Tyawa" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ff9966]">Penelope</span> Tyawa</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-0.5">
+          <a href="Home.html" class="nav-link-new">Home</a>
+          <a href="About.html" class="nav-link-new">About</a>
+          <a href="Services.html" class="nav-link-new">Services</a>
+          <a href="Portfolio.html" class="nav-link-new">Portfolio</a>
+          <a href="FAQ.html" class="nav-link-new">FAQ</a>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Blog
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Our Work
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="See_my_Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="nav-link-new">Contact</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hidden lg:block">
+          <a href="https://www.medisconnect.co.za/" class="btn-danger-red">
+            <span>Book Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+
+        <!-- Burger -->
+        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+          <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+            <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+    <div class="flex flex-col h-full">
+      <div class="flex justify-between items-center p-6 border-b border-gray-100">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/pnt-logo-343x183.png" alt="PNT" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-gray-900">Penelope Tyawa</span>
+        </a>
+        <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-6 px-6">
+        <div class="space-y-1">
+          <a href="index.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Home</a>
+          <a href="page5.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">About</a>
+          <a href="page7.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Services</a>
+          <a href="page6.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Portfolio</a>
+          <a href="page8.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">FAQ</a>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('blog-mobile')">
+              Blog
+              <svg class="w-5 h-5 transition-transform duration-300" id="blog-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="blog-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="page10.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Blog post</a>
+            </div>
+          </div>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('work-mobile')">
+              Our Work
+              <svg class="w-5 h-5 transition-transform duration-300" id="work-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="work-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="page4.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Our Work</a>
+              <a href="page9.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">See my Jobs</a>
+              <a href="page2.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Contact Us</a>
+              <a href="page34.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="page2.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Contact</a>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100">
+        <a href="https://www.medisconnect.co.za/" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#dc3545] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+          Book Now
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES TIMELINE ===== -->
+  <section class="service-timeline">
+    <div class="container">
+      <h2 class="text-center mb-4" style="font-weight:700;font-size:2.4rem;color:#231e1f;">What We Offer</h2>
+      <p class="text-center mb-5 text-gray-600 font-body" style="max-width:700px;margin:0 auto 2rem;">Penelope N Tyawa brings a wealth of experience, combining over 30 years in psychology, leadership, and public service.</p>
+
+      <!-- Item 1 -->
+      <div class="timeline-item">
+        <div class="timeline-image">
+          <img src="assets/images/17-1128x751.png" alt="Workshops & Training" />
+        </div>
+        <div class="timeline-text">
+          <h4>Workshops &amp; Training</h4>
+          <p><strong>Mental Wellness:</strong> Programs for schools, workplaces, and communities.<br />
+          <strong>Specialized Training:</strong> BWRT and advanced therapeutic techniques.<br />
+          <strong>Trauma-Informed Care:</strong> Training professionals to support individuals in crisis.</p>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="timeline-item reverse">
+        <div class="timeline-image">
+          <img src="assets/images/16-1128x751.png" alt="Coaching & Mentoring" />
+        </div>
+        <div class="timeline-text">
+          <h4>Coaching &amp; Mentoring</h4>
+          <p><strong>Leadership Coaching:</strong> Empowering professionals to thrive in leadership roles.<br />
+          <strong>Personal Growth:</strong> Boosting confidence and resilience through tailored mentoring.<br />
+          <strong>Women Empowerment:</strong> Unlocking potential and building purpose-driven lives.</p>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="timeline-item">
+        <div class="timeline-image">
+          <img src="assets/images/young-curly-woman-talking-her-psychotherapist-259150-7291-626x417.jpeg" alt="Specialized Psychological Assessments" />
+        </div>
+        <div class="timeline-text">
+          <h4>Specialized Psychological Assessments</h4>
+          <p><strong>Educational Assessments:</strong> School readiness, learning disabilities, and career guidance for students.<br />
+          <strong>Developmental Assessments:</strong> Holistic evaluations to identify strengths and challenges.<br />
+          <strong>Play Therapy:</strong> A child-centered approach to support emotional development and healing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY / MY WORK ===== -->
+  <section class="gallery-section">
+    <div class="container">
+      <h3 class="text-center mb-2" style="font-weight:700;font-size:2.2rem;color:#231e1f;">My Work</h3>
+      <h4 class="text-center mb-5 text-gray-600 font-body" style="max-width:750px;margin:0 auto 2rem;">Penelope N Tyawa has served in prestigious roles, including Acting Director General and CEO of South Africa’s Parliament. Her deep understanding of human behavior, coupled with her strategic leadership skills, allows her to guide clients toward meaningful transformation.</h4>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="gallery-item">
+            <img src="assets/images/1-596x397.png" alt="Specialized Psychological Assessments" />
+            <div class="gallery-body">
+              <h6>Specialized Psychological Assessments</h6>
+              <p class="small text-muted">Educational Assessments</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="gallery-item">
+            <img src="assets/images/image-4-596x397.jpg" alt="Counseling & Psychotherapy" />
+            <div class="gallery-body">
+              <h6>Counseling &amp; Psychotherapy</h6>
+              <p class="small text-muted">Individual Therapy</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="gallery-item">
+            <img src="assets/images/2-1-596x397.png" alt="Coaching & Mentoring" />
+            <div class="gallery-body">
+              <h6>Coaching &amp; Mentoring</h6>
+              <p class="small text-muted">Leadership Coaching</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="gallery-item">
+            <img src="assets/images/diverse-people-support-group-53876-159802-596x397.jpg" alt="Workshops & Training" />
+            <div class="gallery-body">
+              <h6>Workshops &amp; Training</h6>
+              <p class="small text-muted">Mental Wellness Workshops</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCORDION (Why Choose PNT Psychologist?) ===== -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+          <h3 class="text-center mb-4" style="font-weight:700;font-size:2.2rem;color:#231e1f;">Why Choose PNT Psychologist?</h3>
+          <div class="accordion-custom" id="whyChooseAccordion">
+            
+            <!-- Item 1 -->
+            <div class="accordion-item-custom">
+              <button class="accordion-header-custom" data-target="collapse1">
+                <span class="title">Unmatched Expertise</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="accordion-body-custom" id="collapse1">
+                <p>With decades of experience, Penelope N Tyawa offers unparalleled insights and solutions.</p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item-custom">
+              <button class="accordion-header-custom" data-target="collapse2">
+                <span class="title">Holistic Care</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="accordion-body-custom" id="collapse2">
+                <p>Our approach integrates evidence-based therapy, coaching, and assessments for lasting results.</p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item-custom">
+              <button class="accordion-header-custom" data-target="collapse3">
+                <span class="title">Diverse Language Support</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="accordion-body-custom" id="collapse3">
+                <p>Services available in English, Sesotho, Isixhosa, Isizulu, and Setswana.</p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item-custom">
+              <button class="accordion-header-custom" data-target="collapse4">
+                <span class="title">Accessible Services</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </button>
+              <div class="accordion-body-custom" id="collapse4">
+                <p>Choose between in-person sessions in online and f2f consulting or virtual consultations worldwide. Commitment to Community: Pro bono counseling and tailored support programs ensure we give back to those in need.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING / FEATURES ===== -->
+  <section class="pricing-section">
+    <div class="container">
+      <div class="pricing-card">
+        <div class="pricing-img">
+          <img src="assets/images/doctor-patient-are-discussing-medical-report-931065-62-417x626.jpeg" alt="Individual Sessions" />
+        </div>
+        <div class="pricing-info">
+          <h6>Individual Sessions</h6>
+          <p>Individual Sessions R950</p>
+        </div>
+        <div class="pricing-action">
+          <div class="price">R950</div>
+          <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn btn-primary btn-sm mt-2" style="background:#dc3545;border:none;border-radius:40px;padding:0.5rem 1.5rem;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-img">
+          <img src="assets/images/image-4-320x240.jpg" alt="Couple Sessions" />
+        </div>
+        <div class="pricing-info">
+          <h6>Couple Sessions</h6>
+          <p>Couple Sessions R950</p>
+        </div>
+        <div class="pricing-action">
+          <div class="price">R950</div>
+          <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn btn-primary btn-sm mt-2" style="background:#dc3545;border:none;border-radius:40px;padding:0.5rem 1.5rem;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-img">
+          <img src="assets/images/pnt-main3-816x383.jpg" alt="Penelope N Tyawa" />
+        </div>
+        <div class="pricing-info">
+          <h6>Penelope N Tyawa</h6>
+          <p class="small">Sliding scale: apply if you may be eligible<br />Pay by Electronic Funds Transfer<br />Insurance: Bonitas, Discovery Health, Momentum<br />I charge in line with the stipulated codes as set out by the Board of medical scheme and insurance, however cash payments are most welcome. I am open for sliding scale payment costs on agreed terms.<br /><strong>Call or Email me for a free 15 minute consultation now – 087 250 0592 x93</strong><br />Penelope N Tyawa, HPCSA – Ed. Psych., Psychologist</p>
+        </div>
+        <div class="pricing-action">
+          <div class="price">R950</div>
+          <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn btn-primary btn-sm mt-2" style="background:#dc3545;border:none;border-radius:40px;padding:0.5rem 1.5rem;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-img">
+          <img src="assets/images/5-596x397.png" alt="Behavioural Issues" />
+        </div>
+        <div class="pricing-info">
+          <h6>Behavioural Issues</h6>
+          <p>I specialize in Behavioural Issues</p>
+        </div>
+        <div class="pricing-action">
+          <div class="price">R950</div>
+          <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn btn-primary btn-sm mt-2" style="background:#dc3545;border:none;border-radius:40px;padding:0.5rem 1.5rem;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-img">
+          <img src="assets/images/11-596x397.png" alt="Depression and Self Esteem" />
+        </div>
+        <div class="pricing-info">
+          <h6>Depression and Self Esteem</h6>
+          <p>Depression and Self Esteem<br />R950 Per Session, I accept insurance<br />I see individuals and groups</p>
+        </div>
+        <div class="pricing-action">
+          <div class="price">R950</div>
+          <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn btn-primary btn-sm mt-2" style="background:#dc3545;border:none;border-radius:40px;padding:0.5rem 1.5rem;">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-lg-3">
+          <img src="assets/images/pnt-logo-596x318.png" alt="logo" style="height:2.8rem;filter:brightness(0.9);" />
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">About</h5>
+          <p class="small">I strive to allow my clients to be vulnerable while feeling safe when sharing their lived experiences.</p>
+          <h5 class="text-white fw-semibold mt-3">Follow Us</h5>
+          <div class="d-flex">
+            <a href="https://www.facebook.com/profile.php?id=100090773537954" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/PenelopeTyawa" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/27833027657" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/penelopetyawa/" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Help</h5>
+          <ul class="list-unstyled small">
+            <li>Online psychotherapy (Zoom, WhatsApp, tele-therapy)</li>
+            <li>Face-to-face consulting</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Psychology Today</h5>
+          <p class="small">Call or Email Penelope N Tyawa now for a free 15 minute consultation – 087 250 0592 x93</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-4 pt-3 text-center small">
+        © 2026 Penelope Tyawa · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <div id="whatsapp-float">
+    <a href="https://wa.me/27833027657" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ---- Header scroll effect ----
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ---- Mobile menu ----
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+    // ---- Mobile accordion ----
+    window.toggleAccordion = function(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const icon = document.getElementById(id + '-icon');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        panel.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    };
+
+    // ---- Accordion (pure CSS smooth toggle) ----
+    document.addEventListener('DOMContentLoaded', function() {
+      const accordionHeaders = document.querySelectorAll('.accordion-header-custom');
+      
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const targetBody = document.getElementById(targetId);
+          const parentItem = this.closest('.accordion-item-custom');
+          const isActive = parentItem.classList.contains('active');
+
+          // Close all siblings
+          const siblings = parentItem.parentElement.querySelectorAll('.accordion-item-custom');
+          siblings.forEach(item => {
+            if (item !== parentItem) {
+              item.classList.remove('active');
+            }
+          });
+
+          // Toggle current
+          if (isActive) {
+            parentItem.classList.remove('active');
+          } else {
+            parentItem.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>See My Jobs · Penelope Tyawa</title>
+  <meta name="description" content="Explore Penelope Tyawa's specialties – ADHD, anxiety, trauma, parenting, and more." />
+
+  <!-- Tailwind CSS (for header and layout) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Bootstrap 5 (for grid) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            'theme': {
+              orange: '#ff9966',      /* original accent */
+              danger: '#dc3545',      /* original red */
+              dark: '#232323',        /* original footer */
+              light: '#f8f5f2',
+              gold: '#f0e5d8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fcfaf8;
+      color: #231e1f;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-body { font-family: 'Open Sans', sans-serif; }
+    .text-theme-orange { color: #ff9966; }
+    .bg-theme-orange { background-color: #ff9966; }
+    .border-theme-orange { border-color: #ff9966; }
+    .text-theme-danger { color: #dc3545; }
+    .bg-theme-danger { background-color: #dc3545; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff9966 0%, #ff7a4a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #ff9966; border-radius: 4px; }
+
+    /* ===== HEADER GLASS ===== */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link-new {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link-new:hover {
+      color: #ff9966;
+      background-color: #fff3ed;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 60;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fff3ed;
+      color: #ff9966;
+    }
+    .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+    .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
+
+    .btn-primary-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #ff9966, #ff7a4a);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(255, 153, 102, 0.3);
+    }
+    .btn-primary-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 153, 102, 0.4);
+      color: white;
+    }
+
+    .btn-danger-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: #dc3545;
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25);
+    }
+    .btn-danger-red:hover {
+      background: #b02a37;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.35);
+      color: white;
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu-panel {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 60;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .mobile-menu-panel.open { transform: translateX(0); }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #231e1f;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(255, 153, 102, 0.06);
+      color: #ff9966;
+      padding-left: 1.2rem;
+    }
+
+    /* ===== ACCORDION (Why Choose) ===== */
+    .accordion-section {
+      padding: 40px 0 20px;
+      background: #ffffff;
+    }
+    .accordion-section .accordion-item-custom {
+      background: #f8f5f2;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border: 1px solid transparent;
+      transition: 0.2s;
+    }
+    .accordion-section .accordion-item-custom:hover {
+      border-color: #ff9966;
+    }
+    .accordion-section .accordion-header-custom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+    .accordion-section .accordion-header-custom .title {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .accordion-section .accordion-header-custom .icon {
+      color: #ff9966;
+      transition: transform 0.3s ease;
+    }
+    .accordion-section .accordion-header-custom .icon.open {
+      transform: rotate(180deg);
+    }
+    .accordion-section .accordion-body-custom {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 24px;
+    }
+    .accordion-section .accordion-item-custom.active .accordion-body-custom {
+      max-height: 2000px; /* enough for long content */
+      padding: 0 24px 20px;
+    }
+    .accordion-section .accordion-body-custom p {
+      font-size: 0.98rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+    }
+    .accordion-section .accordion-body-custom p strong {
+      color: #231e1f;
+    }
+
+    /* ===== JOBS GRID ===== */
+    .jobs-section {
+      padding: 20px 0 60px;
+      background: #f8f5f2;
+    }
+    .jobs-section .job-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+      background: white;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .jobs-section .job-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.12);
+    }
+    .jobs-section .job-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .jobs-section .job-card:hover img {
+      transform: scale(1.02);
+    }
+    .jobs-section .job-card .job-body {
+      padding: 1.5rem 1.5rem 1.8rem;
+      flex: 1;
+    }
+    .jobs-section .job-card .job-body h5 {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #231e1f;
+    }
+    .jobs-section .job-card .job-body p {
+      font-size: 0.92rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .jobs-section .job-card .job-body .btn-learn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
+      background: #dc3545;
+      color: white;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+    }
+    .jobs-section .job-card .job-body .btn-learn:hover {
+      background: #b02a37;
+      transform: scale(1.02);
+    }
+
+    /* ===== QUOTE BLOCK ===== */
+    .quote-section {
+      padding: 40px 0;
+      background: #ffffff;
+    }
+    .quote-section blockquote {
+      background: #f8f5f2;
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      border-left: 6px solid #ff9966;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+    }
+    .quote-section blockquote h5 {
+      font-weight: 700;
+      color: #231e1f;
+    }
+    .quote-section blockquote p {
+      font-size: 1.05rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.8;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-custom {
+      background: #232323;
+      color: #d6d0c8;
+      padding: 3rem 0 1.2rem;
+    }
+    .footer-custom a { color: #d6d0c8; transition: 0.2s; }
+    .footer-custom a:hover { color: #ff9966; }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: 0.2s;
+      color: #d6d0c8;
+    }
+    .social-icon:hover {
+      background: #ff9966;
+      color: #232323;
+      transform: scale(1.05);
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    #whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #25d366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: 0.25s;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    #whatsapp-float i { font-size: 32px; color: white; }
+    #whatsapp-float:hover { transform: scale(1.08); }
+    @keyframes floatBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body { padding-top: 64px; }
+      .quote-section blockquote { padding: 1.5rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up.delay-1 { animation-delay: 0.1s; }
+    .fade-up.delay-2 { animation-delay: 0.2s; }
+    .fade-up.delay-3 { animation-delay: 0.3s; }
+    .fade-up.delay-4 { animation-delay: 0.4s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER (glass) ===== -->
+  <header class="header-glass" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex justify-between items-center h-20">
+
+        <!-- Logo -->
+        <a href="Home.html" class="flex items-center gap-3 group">
+          <img src="assets/images/pnt-logo-343x183.png" alt="Penelope Tyawa" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ff9966]">Penelope</span> Tyawa</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-0.5">
+          <a href="Home.html" class="nav-link-new">Home</a>
+          <a href="About.html" class="nav-link-new">About</a>
+          <a href="Services.html" class="nav-link-new">Services</a>
+          <a href="Portfolio.html" class="nav-link-new">Portfolio</a>
+          <a href="FAQ.html" class="nav-link-new">FAQ</a>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Blog
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Our Work
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="nav-link-new">Contact</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hidden lg:block">
+          <a href="https://www.medisconnect.co.za/" class="btn-danger-red">
+            <span>Book Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+
+        <!-- Burger -->
+        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+          <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+            <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+    <div class="flex flex-col h-full">
+      <div class="flex justify-between items-center p-6 border-b border-gray-100">
+        <a href="Home.html" class="flex items-center gap-3">
+          <img src="assets/images/pnt-logo-343x183.png" alt="PNT" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-gray-900">Penelope Tyawa</span>
+        </a>
+        <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-6 px-6">
+        <div class="space-y-1">
+          <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Home</a>
+          <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">About</a>
+          <a href="Services.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Services</a>
+          <a href="Portfolio.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Portfolio</a>
+          <a href="FAQ.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">FAQ</a>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('blog-mobile')">
+              Blog
+              <svg class="w-5 h-5 transition-transform duration-300" id="blog-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="blog-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('work-mobile')">
+              Our Work
+              <svg class="w-5 h-5 transition-transform duration-300" id="work-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="work-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Contact</a>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100">
+        <a href="https://www.medisconnect.co.za/" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#dc3545] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+          Book Now
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACCORDION (Why Choose) ===== -->
+  <section class="accordion-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+          <h3 class="text-center mb-4" style="font-weight:700;font-size:2.2rem;color:#231e1f;">Why Choose PNT Psychologist?</h3>
+          <div class="accordion" id="whyChooseAccordion">
+            <div class="accordion-item-custom">
+              <div class="accordion-header-custom" data-target="collapse1">
+                <span class="title">Unmatched Expertise</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="accordion-body-custom" id="collapse1">
+                <p>With decades of experience, Penelope N Tyawa offers unparalleled insights and solutions.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item-custom">
+              <div class="accordion-header-custom" data-target="collapse2">
+                <span class="title">Holistic Care</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="accordion-body-custom" id="collapse2">
+                <p>Our approach integrates evidence-based therapy, coaching, and assessments for lasting results.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item-custom">
+              <div class="accordion-header-custom" data-target="collapse3">
+                <span class="title">Diverse Language Support</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="accordion-body-custom" id="collapse3">
+                <p>Services available in English, Sesotho, Isixhosa, Isizulu, and Setswana.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item-custom">
+              <div class="accordion-header-custom" data-target="collapse4">
+                <span class="title">Accessible Services</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="accordion-body-custom" id="collapse4">
+                <p>Choose between in-person sessions, online and f2f consulting, or virtual consultations worldwide. Commitment to Community: Pro bono counseling and tailored support programs ensure we give back to those in need.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item-custom">
+              <div class="accordion-header-custom" data-target="collapse5">
+                <span class="title">See My Jobs – Read More</span>
+                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="accordion-body-custom" id="collapse5">
+                <p><strong>Top Specialties</strong></p>
+                <p><strong>Behavioral Issues:</strong> This specialty focuses on understanding and modifying problematic behaviors through techniques like behavioral therapy and cognitive-behavioral therapy. It addresses issues such as impulse control, aggression, and social skills deficits, utilizing strategies to promote positive behavior change.</p>
+                <p><strong>Depression:</strong> Specialists in this area work with individuals experiencing various forms of depression, employing evidence-based therapies such as cognitive behavioral therapy (CBT) and interpersonal therapy to alleviate symptoms and improve emotional well-being. They may also address co-occurring issues like anxiety and low self-esteem.</p>
+                <p><strong>Self-Esteem:</strong> This specialty involves helping clients build a positive self-image and confidence through therapeutic techniques that challenge negative beliefs and promote self-acceptance. Therapists may use cognitive restructuring and skills training to empower individuals to enhance their self-worth.</p>
+                <p><strong>Expertise</strong></p>
+                <p>PNT Psychologist is dedicated to providing comprehensive and compassionate care tailored to a wide spectrum of mental health and developmental needs. Our experienced team, Penelope N Tyawa, utilizes evidence-based approaches to address the following areas:</p>
+                <p><strong>ADHD:</strong> We offer thorough assessment and personalized intervention strategies to help individuals manage attention, hyperactivity, and impulsivity, fostering success in academic, professional, and personal spheres.</p>
+                <p><strong>Anger Management:</strong> Our therapists provide guidance and support in developing healthy coping mechanisms for anger, promoting constructive communication and conflict resolution skills.</p>
+                <p><strong>Antisocial Personality:</strong> We offer specialized therapeutic interventions aimed at improving social functioning, empathy, and responsible decision-making, within a structured and supportive environment.</p>
+                <p><strong>Anxiety:</strong> Our practice provides a range of therapeutic techniques, including cognitive-behavioral therapy (CBT), to alleviate anxiety symptoms and equip individuals with effective stress management tools.</p>
+                <p><strong>Bereavement:</strong> We offer compassionate support and counseling to navigate the grieving process, facilitating healing and adjustment after loss.</p>
+                <p><strong>Career Guidance:</strong> Our career guidance services help individuals identify their strengths, interests, and values, providing direction and support in making informed career choices.</p>
+                <p><strong>Child Psychology:</strong> We specialize in addressing the unique emotional, behavioral, and developmental needs of children, utilizing play therapy and other child-centered approaches to promote well-being.</p>
+                <p><strong>Coping Skills:</strong> We empower individuals with practical coping strategies to manage stress, navigate challenges, and enhance resilience in the face of life's difficulties.</p>
+                <p><strong>Developmental Disorders:</strong> Our team conducts comprehensive assessments and develops individualized intervention plans to support individuals with developmental disorders, maximizing their potential and quality of life.</p>
+                <p><strong>Domestic Abuse/Domestic Violence:</strong> We offer a safe and supportive environment for survivors of domestic abuse, providing counseling, advocacy, and resources to promote healing and empowerment.</p>
+                <p><strong>Education and Learning Disabilities:</strong> We provide educational assessments to identify learning disabilities and offer tailored interventions to support academic success and build confidence.</p>
+                <p><strong>Group Therapy:</strong> Our group therapy sessions provide a supportive and collaborative environment for individuals to share experiences, learn from others, and develop interpersonal skills.</p>
+                <p><strong>Impulse Control Disorders:</strong> We offer therapeutic interventions to help individuals manage impulsive behaviors, develop self-control, and improve decision-making skills.</p>
+                <p><strong>Life Coaching:</strong> Our life coaching services empower individuals to set meaningful goals, overcome obstacles, and achieve personal growth and fulfillment.</p>
+                <p><strong>Oppositional Defiance (ODD):</strong> We provide specialized interventions to help children and adolescents with ODD develop positive behavior management techniques and improve family relationships.</p>
+                <p><strong>Parenting:</strong> Our parenting programs offer guidance and support to parents, equipping them with effective strategies to promote healthy child development and strengthen family bonds.</p>
+                <p><strong>School Issues:</strong> We collaborate with students, families, and schools to address academic, social, and emotional challenges, fostering a positive and supportive learning environment.</p>
+                <p><strong>Stress:</strong> Our practice offers stress management techniques and counseling to help individuals reduce stress levels, improve coping skills, and enhance overall well-being.</p>
+                <p><strong>Thinking Disorders:</strong> We provide comprehensive assessment and treatment for individuals with thinking disorders, promoting cognitive clarity, stability, and improved quality of life.</p>
+                <p><strong>Trauma and PTSD:</strong> Our therapists are trained in trauma-informed care and offer evidence-based therapies, such as Trauma-Focused Cognitive Behavioral Therapy (TF-CBT), to help individuals heal from trauma and PTSD.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOBS GRID ===== -->
+  <section class="jobs-section">
+    <div class="container">
+      <div class="mbr-section-head text-center mb-5">
+        <h4 class="mbr-section-title mbr-fonts-style display-2" style="font-weight:700;font-size:2.4rem;color:#231e1f;">See My Jobs</h4>
+        <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5" style="color:#4a5568;font-size:1.1rem;max-width:700px;margin:0 auto;">I only provide online psychotherapy, with intake on platforms such as Zoom and WhatsApp – and other tele-therapy.<br />Call for a free consultation now – 087 250 0592 x93</h5>
+      </div>
+
+      <div class="row g-4">
+        <!-- Group Therapy -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/diverse-group-people-seminar-53876-1448-626x411.jpg" alt="Group Therapy" />
+            <div class="job-body">
+              <h5>Group Therapy</h5>
+              <p>Provides therapeutic support in a group setting, facilitating shared experiences and collective healing.</p>
+              <a href="Group_Therapy.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Self-Esteem -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/beautiful-brunette-woman-staying-her-workplace-273609-37455-2000x1333.jpg" alt="Self-Esteem" />
+            <div class="job-body">
+              <h5>Self-Esteem</h5>
+              <p>This specialty involves helping clients build a positive self-image and confidence through therapeutic techniques that challenge negative beliefs and promote self-acceptance.</p>
+              <a href="Self_Esteem.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thinking Disorders -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/istockphoto-2175538367-612x376.jpg" alt="Thinking Disorders" />
+            <div class="job-body">
+              <h5>Thinking Disorders</h5>
+              <p>Involves assessment and treatment of cognitive disorders affecting thought processes.</p>
+              <a href="Thinking_Disorders.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depression -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/7-816x544.png" alt="Depression" />
+            <div class="job-body">
+              <h5>Depression</h5>
+              <p>Specialists in this area work with individuals experiencing various forms of depression, employing evidence-based therapies such as CBT and interpersonal therapy.</p>
+              <a href="Depression.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADHD -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/adhd-612x408.jpg" alt="ADHD" />
+            <div class="job-body">
+              <h5>ADHD</h5>
+              <p>Focuses on attention-deficit/hyperactivity disorder, involving assessment and interventions to improve focus and manage symptoms.</p>
+              <a href="Attention_Deficit.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Guidance -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/pnt-626x417.png" alt="Career Guidance" />
+            <div class="job-body">
+              <h5>Career Guidance</h5>
+              <p>Assists individuals in making informed career choices and managing workplace challenges.</p>
+              <a href="Career_Guidance.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- School Issues -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/istockphoto-825637056-612x408.jpg" alt="School Issues" />
+            <div class="job-body">
+              <h5>School Issues</h5>
+              <p>Addresses challenges faced by students in educational settings, including academic performance and social interactions.</p>
+              <a href="School_Issues.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antisocial Personality -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/15-3-816x544.png" alt="Antisocial Personality" />
+            <div class="job-body">
+              <h5>Antisocial Personality</h5>
+              <p>Involves understanding and treating behaviors associated with antisocial personality disorder, focusing on empathy and social skills.</p>
+              <a href="page26.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anger Management -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/istockphoto-1169080378-612x344.jpg" alt="Anger Management" />
+            <div class="job-body">
+              <h5>Anger Management</h5>
+              <p>Techniques and strategies to help individuals control their anger and respond to triggers more effectively.</p>
+              <a href="page25.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developmental Disorders -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/pnt10-626x417.png" alt="Developmental Disorders" />
+            <div class="job-body">
+              <h5>Developmental Disorders</h5>
+              <p>Assessment and intervention for disorders affecting development, such as autism spectrum disorder.</p>
+              <a href="page24.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bereavement -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/fr101ont-view-burning-candle-dark-surface-179666-37774-626x418.jpg" alt="Bereavement" />
+            <div class="job-body">
+              <h5>Bereavement</h5>
+              <p>Support for individuals dealing with loss, helping them navigate grief and find ways to cope.</p>
+              <a href="Bereavement.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trauma and PTSD -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/injured-young-man-with-arm-support-53876-13471-626x418.jpg" alt="Trauma and PTSD" />
+            <div class="job-body">
+              <h5>Trauma and PTSD</h5>
+              <p>Focuses on healing from traumatic experiences through specialized therapeutic approaches.</p>
+              <a href="Trauma and PTSD.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Impulse Control Disorders -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/pnt3-copy-626x417.png" alt="Impulse Control Disorders" />
+            <div class="job-body">
+              <h5>Impulse Control Disorders</h5>
+              <p>Focuses on managing behaviors that are difficult to control, such as compulsive actions.</p>
+              <a href="Impulse_Control_Disorder.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Life Coaching -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/3-1-816x544.png" alt="Life Coaching" />
+            <div class="job-body">
+              <h5>Life Coaching</h5>
+              <p>Helps individuals set and achieve personal goals, enhancing overall life satisfaction.</p>
+              <a href="Life_Coaching.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oppositional Defiance (ODD) -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/close-up-parent-child-fighting-622301-8259-626x417.jpg" alt="Oppositional Defiance" />
+            <div class="job-body">
+              <h5>Oppositional Defiance (ODD)</h5>
+              <p>Involves strategies for managing defiant behaviors in children and adolescents.</p>
+              <a href="Oppositional_Defiant_Disorder_ODD.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education and Learning Disabilities -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/4-816x544.png" alt="Education and Learning Disabilities" />
+            <div class="job-body">
+              <h5>Education and Learning Disabilities</h5>
+              <p>Addresses learning difficulties through tailored educational strategies and support.</p>
+              <a href="Education_&_Learning_Disabilities.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domestic Abuse -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/13-816x544.png" alt="Domestic Abuse" />
+            <div class="job-body">
+              <h5>Domestic Abuse / Domestic Violence</h5>
+              <p>Support for victims, including safety planning and therapeutic interventions to heal from trauma.</p>
+              <a href="Understanding_Domestic_Abuse.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anxiety -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/pnt4-626x417.png" alt="Anxiety" />
+            <div class="job-body">
+              <h5>Anxiety</h5>
+              <p>Addresses various anxiety disorders through therapeutic techniques to reduce symptoms and improve coping mechanisms.</p>
+              <a href="Understanding_Anxiety.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Child Psychology -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/little-girl-having-her-teeth-checked-53876-172-626x429.jpg" alt="Child Psychology" />
+            <div class="job-body">
+              <h5>Child Psychology</h5>
+              <p>Focuses on the mental health of children, addressing developmental issues and behavioral challenges.</p>
+              <a href="Child_Psychology.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coping Skills -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/3-816x544.png" alt="Coping Skills" />
+            <div class="job-body">
+              <h5>Coping Skills</h5>
+              <p>Development of strategies to manage stress, emotions, and life challenges effectively.</p>
+              <a href="Types_of_Coping.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brief Solution Focused Therapy -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-3">
+            <img src="assets/images/concept-work-its-modern-interpretations-1003686-97119-740x415.jpg" alt="Brief Solution Focused Therapy" />
+            <div class="job-body">
+              <h5>Brief Solution Focused Therapy</h5>
+              <p>Solution-Focused Brief Therapy (SFBT) is a short-term, goal-oriented therapeutic approach that emphasizes solutions and strengths rather than problems.</p>
+              <a href="Brief_Solution_Focused_Therapy.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parenting -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-1">
+            <img src="assets/images/pnt3-1-626x417.png" alt="Parenting" />
+            <div class="job-body">
+              <h5>Parenting</h5>
+              <p>Provides guidance on effective parenting techniques to foster healthy child development.</p>
+              <a href="Parenting_Styles.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stress -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="job-card fade-up delay-2">
+            <img src="assets/images/2-816x544.png" alt="Stress" />
+            <div class="job-body">
+              <h5>Stress</h5>
+              <p>Offers strategies for managing acute or chronic stress through various therapeutic methods.</p>
+              <a href="What_is_Stress.html" class="btn-learn">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUOTE SECTION ===== -->
+  <section class="quote-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+          <blockquote>
+            <h5 class="mbr-section-title mbr-fonts-style mb-2 display-7"><strong>Solution Focused Brief Therapy</strong></h5>
+            <p class="mbr-text mbr-fonts-style display-4">
+              I use this approach, affirmations and resilience in clients allows them to dig into their strength and move away from negative self belief system. BWRT 1, using this method is an additional tool for me in therapeutic approach we will look at how my client has kept the old memories that stops them from having new experiences of life.<br />
+              <strong>Call or Email me for a free 15 minute consultation now – 087 250 0592 x93</strong>
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-lg-3">
+          <img src="assets/images/pnt-logo-596x318.png" alt="logo" style="height:2.8rem;filter:brightness(0.9);" />
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">About</h5>
+          <p class="small">I strive to allow my clients to be vulnerable while feeling safe when sharing their lived experiences.</p>
+          <h5 class="text-white fw-semibold mt-3">Follow Us</h5>
+          <div class="d-flex">
+            <a href="https://www.facebook.com/profile.php?id=100090773537954" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/PenelopeTyawa" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/27833027657" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/penelopetyawa/" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Help</h5>
+          <ul class="list-unstyled small">
+            <li>Online psychotherapy (Zoom, WhatsApp, tele-therapy)</li>
+            <li>Face-to-face consulting</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Psychology Today</h5>
+          <p class="small">Call or Email Penelope N Tyawa now for a free 15 minute consultation – 087 250 0592 x93</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-4 pt-3 text-center small">
+        © 2026 Penelope Tyawa · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <div id="whatsapp-float">
+    <a href="https://wa.me/27833027657" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ---- Header scroll effect ----
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ---- Mobile menu ----
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+    // ---- Mobile accordion ----
+    window.toggleAccordion = function(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const icon = document.getElementById(id + '-icon');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        panel.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    };
+
+    // ---- Accordion (pure CSS smooth toggle) ----
+    document.addEventListener('DOMContentLoaded', function() {
+      const accordionHeaders = document.querySelectorAll('.accordion-header-custom');
+      
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const targetBody = document.getElementById(targetId);
+          const parentItem = this.closest('.accordion-item-custom');
+          const isActive = parentItem.classList.contains('active');
+
+          // Close all siblings
+          const siblings = parentItem.parentElement.querySelectorAll('.accordion-item-custom');
+          siblings.forEach(item => {
+            if (item !== parentItem) {
+              item.classList.remove('active');
+            }
+          });
+
+          // Toggle current
+          if (isActive) {
+            parentItem.classList.remove('active');
+          } else {
+            parentItem.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

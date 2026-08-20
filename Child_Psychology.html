@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog: Child Psychology · Penelope Tyawa</title>
+  <meta name="description" content="Understand child psychology – developmental stages, cognitive growth, emotional well-being, and the role of child psychologists." />
+
+  <!-- Tailwind CSS (for header and layout) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Bootstrap 5 (for grid) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            'theme': {
+              black: '#000000',
+              terracotta: '#d56d39',
+              white: '#ffffff',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fcfaf8;
+      color: #000000;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-body { font-family: 'Open Sans', sans-serif; }
+    .text-theme-terracotta { color: #d56d39; }
+    .bg-theme-terracotta { background-color: #d56d39; }
+    .border-theme-terracotta { border-color: #d56d39; }
+    .text-theme-black { color: #000000; }
+    .bg-theme-black { background-color: #000000; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #d56d39 0%, #b8542a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #d56d39; border-radius: 4px; }
+
+    /* ===== HEADER GLASS ===== */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link-new {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link-new:hover {
+      color: #d56d39;
+      background-color: #fdf2ed;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 60;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fdf2ed;
+      color: #d56d39;
+    }
+    .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+    .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
+
+    .btn-primary-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #d56d39 0%, #b8542a 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(213, 109, 57, 0.3);
+    }
+    .btn-primary-terracotta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(213, 109, 57, 0.4);
+      color: white;
+    }
+
+    .btn-danger-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: #dc3545;
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25);
+    }
+    .btn-danger-red:hover {
+      background: #b02a37;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.35);
+      color: white;
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu-panel {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 60;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .mobile-menu-panel.open { transform: translateX(0); }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000000;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(213, 109, 57, 0.06);
+      color: #d56d39;
+      padding-left: 1.2rem;
+    }
+
+    /* ===== QUOTE BLOCK ===== */
+    .quote-section {
+      padding: 40px 0;
+      background: #ffffff;
+    }
+    .quote-section blockquote {
+      background: #fcfaf8;
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      border-left: 6px solid #d56d39;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+    }
+    .quote-section blockquote h5 {
+      font-weight: 700;
+      color: #000000;
+    }
+    .quote-section blockquote p {
+      font-size: 1.05rem;
+      color: #4a5568;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.8;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav-section {
+      padding: 20px 0 40px;
+      background: #ffffff;
+    }
+
+    /* ===== BLOG CONTENT ===== */
+    .blog-content {
+      padding: 40px 0;
+      background: #ffffff;
+    }
+    .blog-content .image-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+    }
+    .blog-content .image-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .blog-content .image-wrapper .image-caption {
+      font-size: 0.9rem;
+      color: #6b6b7a;
+      text-align: center;
+      padding: 0.5rem 0;
+    }
+    .blog-content .content-body h3 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #000000;
+      margin-bottom: 1.5rem;
+    }
+    .blog-content .content-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .blog-content .content-body ul li {
+      padding: 10px 0 10px 32px;
+      position: relative;
+      font-size: 1rem;
+      color: #4a5568;
+      border-bottom: 1px solid #eef2f6;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .blog-content .content-body ul li:last-child {
+      border-bottom: none;
+    }
+    .blog-content .content-body ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: #d56d39;
+      font-size: 1.1rem;
+    }
+    .blog-content .content-body ul li strong {
+      color: #000000;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-custom {
+      background: #000000;
+      color: #d6d0c8;
+      padding: 3rem 0 1.2rem;
+    }
+    .footer-custom a { color: #d6d0c8; transition: 0.2s; }
+    .footer-custom a:hover { color: #d56d39; }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: 0.2s;
+      color: #d6d0c8;
+    }
+    .social-icon:hover {
+      background: #d56d39;
+      color: #000000;
+      transform: scale(1.05);
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    #whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #25d366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: 0.25s;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    #whatsapp-float i { font-size: 32px; color: white; }
+    #whatsapp-float:hover { transform: scale(1.08); }
+    @keyframes floatBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body { padding-top: 64px; }
+      .quote-section blockquote { padding: 1.5rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up.delay-1 { animation-delay: 0.1s; }
+    .fade-up.delay-2 { animation-delay: 0.2s; }
+    .fade-up.delay-3 { animation-delay: 0.3s; }
+    .fade-up.delay-4 { animation-delay: 0.4s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER (glass) ===== -->
+  <header class="header-glass" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex justify-between items-center h-20">
+
+        <!-- Logo -->
+        <a href="Home.html" class="flex items-center gap-3 group">
+          <img src="assets/images/pnt-logo-343x183.png" alt="Penelope Tyawa" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23d56d39%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-[#000000] tracking-tight hidden sm:inline"><span class="text-[#d56d39]">Penelope</span> Tyawa</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-0.5">
+          <a href="Home.html" class="nav-link-new">Home</a>
+          <a href="About.html" class="nav-link-new">About</a>
+          <a href="Services.html" class="nav-link-new">Services</a>
+          <a href="Portfolio.html" class="nav-link-new">Portfolio</a>
+          <a href="FAQ.html" class="nav-link-new">FAQ</a>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Blog
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Our Work
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="nav-link-new">Contact</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="hidden lg:block">
+          <a href="https://www.medisconnect.co.za/" class="btn-danger-red">
+            <span>Book Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+
+        <!-- Burger -->
+        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+          <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+            <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+    <div class="flex flex-col h-full">
+      <div class="flex justify-between items-center p-6 border-b border-gray-100">
+        <a href="Home.html" class="flex items-center gap-3">
+          <img src="assets/images/pnt-logo-343x183.png" alt="PNT" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23d56d39%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-gray-900">Penelope Tyawa</span>
+        </a>
+        <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-6 px-6">
+        <div class="space-y-1">
+          <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">Home</a>
+          <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">About</a>
+          <a href="Services.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">Services</a>
+          <a href="Portfolio.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">Portfolio</a>
+          <a href="FAQ.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">FAQ</a>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('blog-mobile')">
+              Blog
+              <svg class="w-5 h-5 transition-transform duration-300" id="blog-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="blog-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('work-mobile')">
+              Our Work
+              <svg class="w-5 h-5 transition-transform duration-300" id="work-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="work-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#d56d39] hover:bg-orange-50 rounded-xl transition-all">Contact</a>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100">
+        <a href="https://www.medisconnect.co.za/" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#dc3545] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+          Book Now
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUOTE SECTION ===== -->
+  <section class="quote-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+          <blockquote>
+            <h5 class="mbr-section-title mbr-fonts-style mb-2 display-7"><strong>Solution Focused Brief Therapy</strong></h5>
+            <p class="mbr-text mbr-fonts-style display-4">
+              I use this approach, affirmations and resilience in clients allows them to dig into their strength and move away from negative self belief system. BWRT 1, using this method is an additional tool for me in therapeutic approach we will look at how my client has kept the old memories that stops them from having new experiences of life.<br />
+              <strong>Call or Email me for a free 15 minute consultation now – 087 250 0592 x93</strong>
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NAVIGATION ===== -->
+  <section class="nav-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
+          <div class="d-flex justify-content-center gap-3">
+            <a href="Blog.html" class="btn btn-primary btn-sm" style="background:#d56d39;border:none;border-radius:40px;padding:0.5rem 1.5rem;color:white;">Previous</a>
+            <a href="Blog.html" class="btn btn-outline btn-sm" style="border:1.5px solid #d56d39;border-radius:40px;padding:0.5rem 1.5rem;color:#d56d39;transition:all 0.25s;">Back <i class="fas fa-arrow-left" style="color:#d56d39;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOG CONTENT ===== -->
+  <section class="blog-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="image-wrapper fade-up delay-1">
+            <img src="assets/images/little-girl-having-her-teeth-checked-53876-172-626x429.jpg" alt="Child Psychology" />
+            <p class="image-caption">Child Psychology</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-12 col-lg-10">
+          <div class="content-body fade-up delay-2">
+            <h3>Child Psychology</h3>
+            
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <ul>
+                  <li><strong>Child Psychology:</strong> Understanding Development and Well-Being</li>
+                  <li>Child psychology is a specialized field of psychology that focuses on the mental, emotional, and social development of children from infancy through adolescence. This discipline seeks to understand how children grow, learn, and interact with their environment, providing insights that are crucial for parents, educators, and healthcare professionals.</li>
+                  <li><strong>Key Areas of Focus</strong></li>
+                  <li><strong>Developmental Stages:</strong> Child psychology examines various developmental milestones across key stages: infancy, early childhood, middle childhood, and adolescence. Each stage is characterized by significant physical, cognitive, emotional, and social transformations. Understanding these stages helps psychologists identify typical behavior patterns and developmental delays.</li>
+                  <li><strong>Cognitive Development:</strong> This area explores how children acquire knowledge and skills. It includes studying learning processes, memory, problem-solving abilities, and language acquisition. Cognitive theories, such as those proposed by Jean Piaget, highlight how children's thinking evolves as they grow.</li>
+                  <li><strong>Emotional and Social Development:</strong> Child psychologists investigate how children form emotional bonds, manage feelings, develop self-esteem, and interact with peers. Research in this area emphasizes the importance of attachment theory in understanding how early relationships impact later emotional health.</li>
+                  <li><strong>Behavioral Issues:</strong> Child psychologists address various behavioral problems such as ADHD, anxiety disorders, and conduct disorders. They work to identify the underlying causes of these issues and develop effective intervention strategies.</li>
+                  <li><strong>Influence of Environment:</strong> The role of environmental factors—such as family dynamics, culture, and socioeconomic status—is crucial in shaping a child's development. Psychologists study how these influences affect behavior and emotional well-being.</li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-6">
+                <ul>
+                  <li><strong>Importance of Child Psychology</strong></li>
+                  <li>Child psychology is essential for several reasons:</li>
+                  <li><strong>Early Intervention:</strong> Identifying developmental issues early can lead to timely interventions that significantly improve outcomes for children.</li>
+                  <li><strong>Support for Parents:</strong> Child psychologists provide guidance to parents on managing behavioral issues and fostering healthy emotional development.</li>
+                  <li><strong>Educational Impact:</strong> Understanding child psychology helps educators create supportive learning environments that cater to the diverse needs of students.</li>
+                  <li><strong>The Role of Child Psychologists</strong></li>
+                  <li>Child psychologists employ various methods to assess and support children's development:</li>
+                  <li><strong>Assessment Tools:</strong> They use standardized tests and observational methods to evaluate cognitive abilities and emotional health.</li>
+                  <li><strong>Therapeutic Techniques:</strong> Techniques such as play therapy or cognitive-behavioral therapy (CBT) are commonly used to help children express their feelings and develop coping skills.</li>
+                  <li><strong>Collaboration:</strong> Child psychologists often work alongside teachers, pediatricians, and other professionals to create comprehensive support plans for children.</li>
+                  <li><strong>Conclusion</strong></li>
+                  <li>Child psychology plays a vital role in understanding the complexities of child development. By studying the various aspects of growth—from cognitive skills to emotional regulation—child psychologists provide invaluable insights that help children thrive in their formative years. Their work not only supports individual children but also aids families and educational systems in fostering healthier environments for learning and growth.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-lg-3">
+          <img src="assets/images/pnt-logo-596x318.png" alt="logo" style="height:2.8rem;filter:brightness(0.9);" />
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">About</h5>
+          <p class="small">I strive to allow my clients to be vulnerable while feeling safe when sharing their lived experiences.</p>
+          <h5 class="text-white fw-semibold mt-3">Follow Us</h5>
+          <div class="d-flex">
+            <a href="https://www.facebook.com/profile.php?id=100090773537954" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/PenelopeTyawa" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/27833027657" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/penelopetyawa/" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Help</h5>
+          <ul class="list-unstyled small">
+            <li>Online psychotherapy (Zoom, WhatsApp, tele-therapy)</li>
+            <li>Face-to-face consulting</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <h5 class="text-white fw-semibold mb-2">Psychology Today</h5>
+          <p class="small">Call or Email Penelope N Tyawa now for a free 15 minute consultation – 087 250 0592 x93</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-4 pt-3 text-center small">
+        © 2026 Penelope Tyawa · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <div id="whatsapp-float">
+    <a href="https://wa.me/27833027657" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ---- Header scroll effect ----
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ---- Mobile menu ----
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+    // ---- Mobile accordion ----
+    window.toggleAccordion = function(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const icon = document.getElementById(id + '-icon');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        panel.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    };
+  </script>
+
+</body>
+</html>

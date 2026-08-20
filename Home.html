@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penelope Tyawa · Psychologist</title>
+  <meta name="description" content="Psychologist Penelope Tyawa – online &amp; face-to-face therapy. Safe, nurturing space for healing and growth." />
+
+  <!-- Tailwind CSS (for header and layout) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Bootstrap 5 (for carousel) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Montserrat', 'sans-serif'],
+            'body': ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            'theme': {
+              orange: '#ff9966',      /* original accent */
+              danger: '#dc3545',      /* original red */
+              dark: '#232323',        /* original footer */
+              light: '#f8f5f2',
+              gold: '#f0e5d8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fcfaf8;
+      color: #231e1f;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-body { font-family: 'Open Sans', sans-serif; }
+    .text-theme-orange { color: #ff9966; }
+    .bg-theme-orange { background-color: #ff9966; }
+    .border-theme-orange { border-color: #ff9966; }
+    .text-theme-danger { color: #dc3545; }
+    .bg-theme-danger { background-color: #dc3545; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff9966 0%, #ff7a4a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #ff9966; border-radius: 4px; }
+
+    /* ===== HEADER GLASS (same style as provided) ===== */
+    .header-glass {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-glass.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-link-new {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nav-link-new:hover {
+      color: #ff9966;
+      background-color: #fff3ed;
+    }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      width: 200px;
+      background: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #f3f4f6;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.96);
+      transition: all 0.25s ease;
+      transform-origin: top left;
+      z-index: 60;
+    }
+    .group:hover .dropdown-menu-custom {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-menu-custom a {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: #374151;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu-custom a:hover {
+      background: #fff3ed;
+      color: #ff9966;
+    }
+    .dropdown-menu-custom a:first-child { border-radius: 0.75rem 0.75rem 0 0; }
+    .dropdown-menu-custom a:last-child { border-radius: 0 0 0.75rem 0.75rem; }
+
+    .btn-primary-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #ff9966, #ff7a4a);
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(255, 153, 102, 0.3);
+    }
+    .btn-primary-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 153, 102, 0.4);
+      color: white;
+    }
+
+    .btn-danger-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: #dc3545;
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(220, 53, 69, 0.25);
+    }
+    .btn-danger-red:hover {
+      background: #b02a37;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.35);
+      color: white;
+    }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu-panel {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 60;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .mobile-menu-panel.open { transform: translateX(0); }
+    .mobile-menu-panel a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #231e1f;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
+    .mobile-menu-panel a:hover {
+      background: rgba(255, 153, 102, 0.06);
+      color: #ff9966;
+      padding-left: 1.2rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 60px 0 40px;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 153, 102, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, #ff9966 0%, #ff7a4a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #4a5568;
+      max-width: 500px;
+      margin-bottom: 32px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image .img-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      background: #f5f5f7;
+    }
+    .hero-image .img-wrapper img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+    }
+    .hero-image .img-wrapper .floating-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: white;
+      padding: 14px 22px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #231e1f;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-image .img-wrapper .floating-badge i { color: #ff9966; font-size: 1.2rem; }
+
+    /* ===== SERVICE CARDS ===== */
+    .service-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+      height: 100%;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.12);
+    }
+    .service-icon {
+      color: #ff9966;
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* ===== PORTFOLIO CARDS ===== */
+    .portfolio-card {
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+      background: white;
+      transition: all 0.3s;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.12);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .portfolio-card:hover img { transform: scale(1.02); }
+    .portfolio-card-body {
+      padding: 1.4rem 1.2rem 1.6rem;
+      text-align: center;
+    }
+
+    /* ===== TESTIMONIALS (exact grid from user) ===== */
+    .testimonial-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.02);
+      transition: 0.2s;
+      height: 100%;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+    .testimonial-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.8rem;
+      border: 3px solid #f0e5d8;
+    }
+    .testimonial-text { font-size: 1rem; line-height: 1.6; color: #231e1f; }
+    .testimonial-name { font-weight: 700; margin-top: 1rem; color: #231e1f; }
+    .testimonial-role { font-size: 0.85rem; color: #6b6b7a; }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: #ff9966;
+      border-radius: 50%;
+      padding: 20px;
+      background-size: 50%;
+    }
+
+    /* ===== CONTACT CARDS ===== */
+    .contact-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.06);
+      border: 1px solid #f0ebe7;
+      transition: 0.2s;
+      height: 100%;
+    }
+    .contact-card:hover { transform: translateY(-4px); }
+    .contact-icon {
+      font-size: 2rem;
+      color: #ff9966;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ===== FOOTER (original dark) ===== */
+    .footer-custom {
+      background: #232323;
+      color: #d6d0c8;
+      padding: 3rem 0 1.2rem;
+    }
+    .footer-custom a { color: #d6d0c8; transition: 0.2s; }
+    .footer-custom a:hover { color: #ff9966; }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      transition: 0.2s;
+      color: #d6d0c8;
+    }
+    .social-icon:hover {
+      background: #ff9966;
+      color: #232323;
+      transform: scale(1.05);
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    #whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #25d366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: 0.25s;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    #whatsapp-float i { font-size: 32px; color: white; }
+    #whatsapp-float:hover { transform: scale(1.08); }
+    @keyframes floatBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-content p { max-width: 100%; margin: 0 auto; }
+      .hero-image .img-wrapper { max-width: 100%; }
+    }
+    @media (max-width: 768px) {
+      body { padding-top: 64px; }
+      .hero { padding: 40px 0 30px; }
+      .hero-content h1 { font-size: 2.4rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up.delay-1 { animation-delay: 0.1s; }
+    .fade-up.delay-2 { animation-delay: 0.2s; }
+    .fade-up.delay-3 { animation-delay: 0.3s; }
+    .fade-up.delay-4 { animation-delay: 0.4s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NEW HEADER (glass, with dropdowns) ===== -->
+  <header class="header-glass" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex justify-between items-center h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="assets/images/pnt-logo-343x183.png" alt="Penelope Tyawa" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Inter%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-[#231e1f] tracking-tight hidden sm:inline"><span class="text-[#ff9966]"></span> </span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-0.5">
+          <a href="Home.html" class="nav-link-new">Home</a>
+          <a href="About.html" class="nav-link-new">About</a>
+          <a href="Services.html" class="nav-link-new">Services</a>
+          <a href="Portfolio.html" class="nav-link-new">Portfolio</a>
+          <a href="FAQ.html" class="nav-link-new">FAQ</a>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Blog
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Blog.html">Blog post</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <button class="nav-link-new flex items-center gap-1">
+              Our Work
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="dropdown-menu-custom">
+              <a href="Our_Work.html">Our Work</a>
+              <a href="Jobs.html">See my Jobs</a>
+              <a href="Contact_Us.html">Contact Us</a>
+              <a href="Testimonials.html">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contac_Us.html" class="nav-link-new">Contact</a>
+        </div>
+
+        <!-- CTA (danger red) -->
+        <div class="hidden lg:block">
+          <a href="https://www.medisconnect.co.za/" class="btn-danger-red">
+            <span>Book Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+
+        <!-- Burger -->
+        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" id="menuBtn" aria-label="Toggle menu">
+          <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-1"></span>
+            <span class="w-6 h-0.5 bg-gray-700 transition-all duration-300 menu-line-2"></span>
+            <span class="w-4 h-0.5 bg-gray-700 transition-all duration-300 menu-line-3 ml-auto"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu-panel lg:hidden" id="mobileMenu">
+    <div class="flex flex-col h-full">
+      <div class="flex justify-between items-center p-6 border-b border-gray-100">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/pnt-logo-343x183.png" alt="PNT" class="h-10 w-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23ff9966%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-weight=%22bold%22 font-family=%22Arial%22%3EPT%3C/text%3E%3C/svg%3E'">
+          <span class="font-black text-xl text-gray-900">Penelope Tyawa</span>
+        </a>
+        <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors" id="closeMenu" aria-label="Close menu">
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-6 px-6">
+        <div class="space-y-1">
+          <a href="Home.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Home</a>
+          <a href="About.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">About</a>
+          <a href="Services.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Services</a>
+          <a href="Portfolio.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Portfolio</a>
+          <a href="FAQ.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">FAQ</a>
+
+          <!-- Mobile Blog -->
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('blog-mobile')">
+              Blog
+              <svg class="w-5 h-5 transition-transform duration-300" id="blog-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="blog-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Blog.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Blog post</a>
+            </div>
+          </div>
+
+          <!-- Mobile Our Work -->
+          <div class="mobile-accordion">
+            <button class="w-full flex justify-between items-center px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all" onclick="toggleAccordion('work-mobile')">
+              Our Work
+              <svg class="w-5 h-5 transition-transform duration-300" id="work-mobile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="work-mobile" class="hidden pl-4 space-y-1 mt-1">
+              <a href="Work.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Our Work</a>
+              <a href="Jobs.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">See my Jobs</a>
+              <a href="Contact.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Contact Us</a>
+              <a href="Testimonials.html" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#ff9966] transition-colors">Testimonials</a>
+            </div>
+          </div>
+
+          <a href="Contact_Us.html" class="block px-4 py-3 text-lg font-semibold text-gray-800 hover:text-[#ff9966] hover:bg-orange-50 rounded-xl transition-all">Contact</a>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100">
+        <a href="https://www.medisconnect.co.za/" class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-[#dc3545] text-white font-bold rounded-xl hover:shadow-lg transition-all">
+          Book Now
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-up">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:0.85rem;font-weight:600;color:#ff9966;text-transform:uppercase;letter-spacing:0.06em;">
+          <i class="fas fa-circle" style="font-size:0.5rem;"></i> Psychologist
+          <i class="fas fa-circle" style="font-size:0.5rem;color:#d5cfe0;"></i> Pr.Nos. 8634688
+        </div>
+        <h1>Penelope <span class="highlight">Tyawa</span></h1>
+        <p>A highly experienced consulting psychologist and strategic leader. Our practice offers a safe, nurturing space for individuals to overcome challenges, unlock potential, and live fulfilling lives.</p>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="bg-orange-50 px-3 py-1 rounded-full text-gray-800 border border-orange-100"><i class="fas fa-check-circle text-[#ff9966] me-1"></i> All medical aid</span>
+          <span class="bg-orange-50 px-3 py-1 rounded-full text-gray-800 border border-orange-100"><i class="fas fa-check-circle text-[#ff9966] me-1"></i> Non-medical clients</span>
+        </div>
+        <div class="mt-5 flex gap-3 flex-wrap">
+          <a href="tel:+27833027657" class="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-800 rounded-full font-semibold text-gray-800 hover:bg-gray-800 hover:text-white transition-all"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://www.medisconnect.co.za/" class="btn-danger-red">Book session</a>
+        </div>
+      </div>
+
+      <div class="hero-image fade-up delay-1">
+        <div class="img-wrapper">
+          <img src="assets/images/pnt-main2-1-640x600.jpg" alt="Penelope Tyawa" />
+          <div class="floating-badge">
+            <i class="fas fa-heart" style="color:#ff9966;"></i>
+            <span>Safe &amp; nurturing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES (3 cards) ===== -->
+  <section class="py-16 bg-[#f8f5f2]">
+    <div class="container">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="service-card fade-up delay-2">
+          <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h4 class="text-xl font-bold mb-3">Workshops &amp; Training</h4>
+          <p class="text-gray-600 font-body">Mental wellness programs for schools, workplaces, communities. BWRT, advanced techniques, trauma-informed care.</p>
+        </div>
+        <div class="service-card fade-up delay-3">
+          <div class="service-icon"><i class="fas fa-users-cog"></i></div>
+          <h4 class="text-xl font-bold mb-3">Coaching &amp; Mentoring</h4>
+          <p class="text-gray-600 font-body">Leadership coaching, personal growth, confidence, resilience. Women empowerment &amp; purpose-driven mentoring.</p>
+        </div>
+        <div class="service-card fade-up delay-4">
+          <div class="service-icon"><i class="fas fa-brain"></i></div>
+          <h4 class="text-xl font-bold mb-3">Specialized Assessments</h4>
+          <p class="text-gray-600 font-body">Educational (school readiness, learning disabilities), developmental, play therapy for emotional healing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO GRID ===== -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="portfolio-card fade-up delay-1">
+          <img src="assets/images/10-816x544.png" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="https://www.medisconnect.co.za/" class="btn-danger-red inline-block">Book Now</a>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up delay-2">
+          <img src="assets/images/12-816x544.png" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="Blog.html" class="btn-primary-orange inline-block">Read More</a>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up delay-3">
+          <img src="assets/images/1-816x544.png" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="https://www.medisconnect.co.za/" class="btn-danger-red inline-block">Book Now</a>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up delay-1">
+          <img src="assets/images/screenshot-2025-04-07-at-12.39.23-816x546.png" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="Blog.html" class="btn-primary-orange inline-block">Read More</a>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up delay-2">
+          <img src="assets/images/9-816x544.png" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="https://www.psychologytoday.com/za/counselling/penelope-n-tyawa-faerie-glen-gt/1056521" class="btn-danger-red inline-block">Book Now</a>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up delay-3">
+          <img src="assets/images/mbr-1920x1920.jpg" alt="service" />
+          <div class="portfolio-card-body">
+            <a href="Blog.html" class="btn-primary-orange inline-block">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS (exact grid from user) ===== -->
+  <section class="py-5" style="background: #f8f5f2;">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold" style="color:#231e1f;">What my clients say</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="testimonial-card text-center">
+                  <img src="assets/images/mbr-1-400x522.jpeg" alt="client" class="testimonial-avatar">
+                  <p class="testimonial-text">⭐ “After years of struggling with trauma, I finally feel free. The progress I’ve made is incredible.”</p>
+                  <div class="testimonial-name">K. Mthunzi</div>
+                  <div class="testimonial-role">Designer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="testimonial-card text-center">
+                  <img src="assets/images/mbr-4-400x267.jpg" alt="client" class="testimonial-avatar">
+                  <p class="testimonial-text">⭐ “This therapy changed my life. I walked in feeling lost and overwhelmed—now I have clarity, confidence.”</p>
+                  <div class="testimonial-name">A. Simth</div>
+                  <div class="testimonial-role">Castle C.O.O</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="testimonial-card text-center">
+                  <img src="assets/images/mbr-5-400x267.jpg" alt="client" class="testimonial-avatar">
+                  <p class="testimonial-text">⭐ “I’ve worked with other therapists before, but this was different. Compassion, expertise, genuine care.”</p>
+                  <div class="testimonial-name">J. Michaels</div>
+                  <div class="testimonial-role">Teacher @St Merry's</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="testimonial-card text-center">
+                  <img src="assets/images/mbr-400x400.png" alt="client" class="testimonial-avatar">
+                  <p class="testimonial-text">⭐ “A safe, judgment-free space where I felt truly heard. If you’re thinking about therapy, don’t wait.”</p>
+                  <div class="testimonial-name">L.T. Designs</div>
+                  <div class="testimonial-role">Content Creatives</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <h3 class="text-3xl font-bold text-center mb-8">Get in touch</h3>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="contact-card text-center fade-up delay-1">
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <h6 class="font-bold">Phone</h6>
+          <p><a href="tel:+27833027657" class="text-gray-700">+27 83 302 7657</a></p>
+        </div>
+        <div class="contact-card text-center fade-up delay-2">
+          <div class="contact-icon"><i class="far fa-envelope"></i></div>
+          <h6 class="font-bold">Email</h6>
+          <p><a href="mailto:babi.penny05@gmail.com" class="text-gray-700">babi.penny05@gmail.com</a></p>
+        </div>
+        <div class="contact-card text-center fade-up delay-3">
+          <div class="contact-icon"><i class="fas fa-globe"></i></div>
+          <h6 class="font-bold">Online &amp; F2F</h6>
+          <p class="text-sm text-gray-600">Bookings directly with psychologist<br />All medical aid &amp; non-medical</p>
+        </div>
+        <div class="contact-card text-center fade-up delay-4">
+          <div class="contact-icon"><i class="far fa-clock"></i></div>
+          <h6 class="font-bold">Working hours</h6>
+          <p class="text-gray-700">9:00 – 17:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER (original dark) ===== -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <img src="assets/images/pnt-logo-596x318.png" alt="logo" style="height:2.8rem;filter:brightness(0.9);" />
+          <p class="mt-3 text-sm max-w-xs">Safe, vulnerable space for healing and growth.</p>
+        </div>
+        <div>
+          <h6 class="text-white font-semibold">About</h6>
+          <p class="text-sm">I strive to allow my clients to be vulnerable while feeling safe when sharing lived experiences.</p>
+          <div class="flex mt-3">
+            <a href="https://www.facebook.com/profile.php?id=100090773537954" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/PenelopeTyawa" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/27833027657" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/penelopetyawa/" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h6 class="text-white font-semibold">Help</h6>
+          <ul class="list-none text-sm">
+            <li>Online psychotherapy (Zoom, WhatsApp, tele-therapy)</li>
+            <li class="mt-2">Face-to-face consulting</li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="text-white font-semibold">Psychology Today</h6>
+          <p class="text-sm">Call or Email Penelope N Tyawa for a free 15 min consultation · 087 250 0592 x93</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-6 pt-4 text-center text-sm">
+        © 2026 Penelope Tyawa · All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <div id="whatsapp-float">
+    <a href="https://wa.me/27833027657" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS (for carousel) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ---- Header scroll effect ----
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ---- Mobile menu toggle ----
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', function() { if (window.innerWidth >= 1024) closeMenu(); });
+
+    // ---- Mobile accordion ----
+    window.toggleAccordion = function(id) {
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const icon = document.getElementById(id + '-icon');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        panel.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    };
+  </script>
+
+</body>
+</html>
